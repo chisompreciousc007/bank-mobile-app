@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Instagram" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';"
+    />
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+      }
+      #nv {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        background-color: rgb(4, 36, 10);
+      }
+      .nvbuttons {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        width: 20%;
+        height: 15vh;
+        align-items: center;
+        justify-content: center;
+        color: gray;
+      }
+      footer {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        height: 15vh;
+        background-color: rgb(4, 36, 10);
+        color: rgb(216, 241, 204);
+        flex-direction: column;
+        padding-left: 5px;
+      }
+      .nv-details {
+        text-align: center;
+      }
+      .nvbuttons > a {
+        text-decoration: none;
+        color: grey;
+      }
+      .nvbuttons > a:hover {
+        text-decoration: none;
+        color: white;
+      }
+      .nvbuttons > a:active {
+        text-decoration: none;
+        color: white;
+      }
+      .detail {
+        overflow-x: scroll;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        height: 70vh;
+        background-color: #d3d3d34f;
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        -o-flex-direction: column;
+        flex-direction: column;
+        background-image: url("street.jpg");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .nvbuttons > a > div > p {
+        font-size: 60%;
+        font-weight: bold;
+      }
+      #box-space {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        -o-flex-direction: column;
+        flex-direction: column;
+      }
+      .box-space-childs {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        height: 10vh;
+
+        justify-content: center;
+      }
+      #top-bar {
+        height: 4vh;
+        /*display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;*/
+        background-color: #3881456e;
+        color: white;
+      }
+      #info {
+        height: 5vh;
+        color: rgb(159, 236, 159);
+        padding-top: 5px !important;
+        padding-left: 10vw;
+      }
+      #label,
+      .input-div {
+        width: 80vw;
+        height: 7vh;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .input-div > input {
+        border-radius: 7px;
+      }
+      .input-label {
+        width: 8vw;
+        height: 7vh;
+        padding-top: 10px;
+        background-color: transparent;
+
+        padding-left: 4px;
+
+        color: rgb(4, 36, 10);
+      }
+      input {
+        width: 67vw;
+        height: 7vh;
+        border: 0px;
+      }
+
+      /* Account component CSS */
+      .account-div {
+        height: 10vh;
+        border-width: 100vw;
+
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        flex-direction: row;
+      }
+
+      #label,
+      .input-div {
+        width: 80vw;
+        height: 7vh;
+      }
+
+      .accnt-details,
+      .accnt-bal {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        flex-direction: column;
+        padding: 14px 6px;
+      }
+      .accnt-details {
+        width: 73vw;
+      }
+      .accnt-balance {
+        width: 17vw;
+      }
+      .account-div {
+        width: 90vw;
+        margin: 0px auto;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row;
+        -o-flex-direction: row;
+        flex-direction: row;
+        font-size: 9px;
+        border-bottom: 1px solid #8080803d;
+      }
+      .account-div > div > div > p {
+        color: white;
+      }
+      .highlight-text {
+        color: rgb(159, 236, 159) !important;
+        font-size: 13px;
+        font-weight: bold;
+      }
+      .account-div:hover {
+        background-color: #c0c0ca8f;
+      }
+
+      /* transfer CSS */
+
+      .accnt-details,
+      .accnt-bal {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        flex-direction: column;
+        padding: 14px 6px;
+      }
+      .accnt-details {
+        width: 73vw;
+      }
+      .accnt-balance {
+        width: 17vw;
+      }
+      .transfer-div {
+        height: 11vh;
+        width: 90vw;
+        margin: 0px auto;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row;
+        -o-flex-direction: row;
+        flex-direction: row;
+        font-size: 9px;
+        border-bottom: 1px solid #8080803d;
+      }
+      .transfer-div > div > div > p {
+        color: white;
+      }
+      .transfer-div > div > div > h2 {
+        color: rgb(159, 236, 159);
+      }
+      .transfer-div:hover {
+        background-color: #c0c0ca8f;
+      }
+      button {
+        font-size: 9px;
+        background-color: #0000ff78;
+        border-radius: 5px;
+        color: white;
+        border: none;
+      }
+
+      .transfer-highlight-debit {
+        font-size: 13px;
+        color: rgb(159, 236, 159) !important ;
+        margin-bottom: 5px;
+      }
+      .transfer-highlight-credit {
+        font-size: 13px;
+        color: "#34ac2ad6" !important ;
+      }
+
+      /* locator css */
+
+      .bank-location-paragraphs {
+        margin-bottom: 0.5rem;
+      }
+    </style>
+
+    <title>online banking</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
