@@ -62,6 +62,7 @@ function Payment() {
         icon: "fa fa-spinner",
         message: "Please wait...",
       });
+      setPopupStyle({ ...popupStyle, display: "block" });
       setTimeout(() => {
         setTransactionMessage({
           ...transactionMessage,
