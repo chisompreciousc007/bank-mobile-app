@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Balance = require("../models/Balance");
-// const { balanceValidation } = require("../validation");
 
 // balance id=="5eabe12044a9c11490453485"
 //   to get actual amount==  console.log(balance[0].Amount);
@@ -15,8 +14,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
-  // const { error } = balanceValidation(req.body);
-  // if (error) return res.status(400).send(error.details[0].message);
   const newBalance = new Balance({
     Amount: req.body.Amount,
   });
@@ -30,8 +27,6 @@ router.post("/save", async (req, res) => {
   }
 });
 router.post("/update/:id", async (req, res) => {
-  const { error } = balanceValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
   await Balance.findByIdAndUpdate(
     req.params.id,
     {

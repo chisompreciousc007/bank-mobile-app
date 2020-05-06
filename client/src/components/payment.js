@@ -66,7 +66,7 @@ function Payment() {
         setTransactionMessage({
           ...transactionMessage,
           icon: "fa fa-check-circle-o",
-          message: "Account verified!!",
+          message: "Transaction Successful!!",
         });
       }, 3000);
       setTimeout(() => {
