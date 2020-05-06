@@ -6,7 +6,7 @@ function Transfer() {
     email: "",
     password: "",
   });
-  const [signinLabel, setSigninLabel] = useState("please sign in");
+  const [signinLabel, setSigninLabel] = useState("fa fa-sign-in");
   const [loginStyle, setLoginStyle] = useState({
     height: "100vh",
     position: "absolute",
@@ -27,7 +27,7 @@ function Transfer() {
       loginData.email === "dwhitmore3107" &&
       loginData.password === "sunflower123"
     ) {
-      setSigninLabel("Loading...Please wait");
+      setSigninLabel("fa fa-spinner");
       setTimeout(() => {
         setLoginStyle({ ...loginStyle, display: "none" });
       }, 3000);
@@ -41,26 +41,29 @@ function Transfer() {
   };
 
   return (
-    <div class="container-fluid">
-      <div class=" text-center" style={loginStyle}>
+    <div className="container-fluid">
+      <div className=" text-center" style={loginStyle}>
         <img
           alt=""
           src="background.png"
           style={{ width: "92vw", height: "100vh", backgroundSize: "cover" }}
         />
-        <form class="form-signin" style={formstyle}>
+        <form className="form-signin" style={formstyle}>
           <img
-            class="mb-4 mt-4"
+            className="mb-4 mt-4"
             src="logo.png"
             alt=""
             width="100%"
             height="72"
             style={{ opacity: "0.2" }}
           />
-          <h1 class="h3 mb-3 font-weight-normal" style={{ color: "#c3f3bffa" }}>
-            {signinLabel}
+          <h1
+            className="h3 mb-3 font-weight-normal"
+            style={{ color: "#c3f3bffa" }}
+          >
+            <i className={signinLabel} aria-hidden="true"></i>
           </h1>
-          <label for="inputEmail" class="sr-only">
+          <label htmlFor="inputEmail" className="sr-only">
             Email address
           </label>
           <input
@@ -68,13 +71,13 @@ function Transfer() {
             type="email"
             name="email"
             id="inputEmail"
-            class="form-control"
+            className="form-control"
             placeholder="Email address"
             required={true}
-            autofocus=""
+            autoFocus=""
             onChange={updateField}
           />
-          <label for="inputPassword" class="sr-only">
+          <label htmlFor="inputPassword" className="sr-only">
             Password
           </label>
           <input
@@ -83,11 +86,11 @@ function Transfer() {
             type="password"
             name="password"
             id="inputPassword"
-            class="form-control"
+            className="form-control"
             placeholder="Password"
             required={true}
           />
-          <div class="checkbox mb-3" style={{ height: "5vh" }}>
+          <div className="checkbox mb-3" style={{ height: "8vh" }}>
             <label style={{ color: "#c3f3bffa" }}>
               <input
                 type="checkbox"
@@ -99,15 +102,38 @@ function Transfer() {
               />
               Remember me
             </label>
+            <p>
+              {" "}
+              <a
+                href="www.google.com"
+                style={{
+                  marginRight: "4vw",
+                  textDecoration: "none",
+                  color: "#c3f3bffa",
+                }}
+              >
+                Forgotten Password?
+              </a>
+              <a
+                href="wwww.google.com"
+                style={{
+                  marginRight: "1vw",
+                  textDecoration: "none",
+                  color: "#c3f3bffa",
+                }}
+              >
+                Sign Up
+              </a>{" "}
+            </p>
           </div>
           <button
-            class="btn btn-lg btn-primary btn-block"
+            className="btn btn-lg btn-primary btn-block"
             type="button"
             onClick={Submit}
           >
             Sign in
           </button>
-          <p class="mt-5 mb-3 text-muted">© 2003-2020</p>
+          <p className="mt-5 mb-3 text-muted">© 2003-2020</p>
         </form>
       </div>
     </div>

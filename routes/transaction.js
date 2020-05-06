@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Transaction = require("../models/Transaction");
-const { transactionValidation } = require("../validation");
+// const { transactionValidation } = require("../validation");
 
 router.get("/", async (req, res) => {
   try {
@@ -14,8 +14,8 @@ router.get("/", async (req, res) => {
 
 router.post("/post", async (req, res) => {
   //validate data before sending
-  const { error } = transactionValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  // const { error } = transactionValidation(req.body);
+  // if (error) return res.status(400).send(error.details[0].message);
 
   const newTransaction = new Transaction({
     Account_Name: req.body.Account_Name,

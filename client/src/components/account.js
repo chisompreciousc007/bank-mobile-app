@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function AccountsItem(props) {
   return (
-    <div key={props.index + 1} className="account-div">
+    <div className="account-div">
       <div className="accnt-details">
         <div>
           <p className="highlight-text">{props.item.name}</p>
@@ -91,7 +91,7 @@ function Account() {
           </div>
 
           {accountList.map((item, index) => (
-            <AccountsItem index={index} item={item} />
+            <AccountsItem index={index} item={item} key={index} />
           ))}
         </div>
       </div>

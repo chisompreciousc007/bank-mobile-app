@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import axios from "axios";
+const { transactionValidation } = require("../validation");
 function Payment() {
   // const url = "http://localhost:4000";
   const [oldBalance, setOldBalance] = useState(0);
@@ -21,26 +23,64 @@ function Payment() {
   const newBalance = {
     Amount: oldBalance - parseFloat(transactionData.Amount),
   };
-  const init = () => {
-    setTransactionData({
-      Account_Name: "Transaction Successful!!",
-      Account_Number: "Enter Account Number",
-      Amount: "Amount in USD",
-      Ref: "Payment for Service",
-    });
-  };
+  const [popupStyle, setPopupStyle] = useState({
+    position: "absolute",
+    top: "20vh",
+    left: "10%",
+    backgroundColor: "#ffffffdb",
+    height: "50vh",
+    width: "80vw",
+    textAlign: "center",
+    display: "none",
+  });
+  const [transactionMessage, setTransactionMessage] = useState({
+    message: "Transaction Successful!!!",
+    icon: "fa fa-check-circle-o",
+  });
   const Submit = (e) => {
     e.preventDefault();
+    const { error } = transactionValidation(transactionData);
+    // if (error) return console.log(error.details[0].message);
+    if (error) {
+      const errmsg = error.details[0].message;
+      console.log(errmsg);
 
-    axios
-      .post("/api/transactions/post", transactionData)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-    axios
-      .post("/api/balance/update/5eabe12044a9c11490453485", newBalance)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-    init();
+      setTransactionMessage({
+        ...transactionMessage,
+        icon: "fa fa-times-circle-o",
+        message: "All inputs must be formatted correctly!",
+      });
+      setPopupStyle({ ...popupStyle, display: "block" });
+      return setTimeout(() => {
+        setPopupStyle({ ...popupStyle, display: "none" });
+      }, 1000);
+    }
+    // res.status(400).send(error.details[0].message);
+    else {
+      setTransactionMessage({
+        ...transactionMessage,
+        icon: "fa fa-spinner",
+        message: "Please wait...",
+      });
+      setTimeout(() => {
+        setTransactionMessage({
+          ...transactionMessage,
+          icon: "fa fa-check-circle-o",
+          message: "Account verified!!",
+        });
+      }, 3000);
+      setTimeout(() => {
+        setPopupStyle({ ...popupStyle, display: "none" });
+      }, 4000);
+      axios
+        .post("/api/transactions/post", transactionData)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+      axios
+        .post("/api/balance/update/5eabe12044a9c11490453485", newBalance)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+    }
   };
   const updateField = (e) => {
     e.preventDefault();
@@ -48,27 +88,53 @@ function Payment() {
   };
   const verify = (e) => {
     e.preventDefault();
+    setTransactionMessage({
+      ...transactionMessage,
+      icon: "fa fa-spinner",
+      message: "Please wait...",
+    });
+    setPopupStyle({ ...popupStyle, display: "block" });
     if (transactionData.Account_Number === "123456") {
       setTransactionData({
+        ...transactionData,
         Account_Name: "Exxon Mobil drilling Services",
-        Account_Number: "123456",
-        Amount: "Amount in USD",
-        Ref: "Payment for Service",
       });
-    } else if (transactionData.Account_Number === "2468") {
+      setTimeout(() => {
+        setTransactionMessage({
+          ...transactionMessage,
+          icon: "fa fa-check-circle-o",
+          message: "Account verified!!",
+        });
+      }, 3000);
+      setTimeout(() => {
+        setPopupStyle({ ...popupStyle, display: "none" });
+      }, 4000);
+    } else if (transactionData.Account_Number === "246810") {
       setTransactionData({
+        ...transactionData,
         Account_Name: "Shell oil Company",
-        Account_Number: "2468",
-        Amount: "Amount in USD",
-        Ref: "Payment for Service",
       });
+      setTimeout(() => {
+        setTransactionMessage({
+          ...transactionMessage,
+          icon: "fa fa-check-circle-o",
+          message: "Account verified!!",
+        });
+      }, 3000);
+      setTimeout(() => {
+        setPopupStyle({ ...popupStyle, display: "none" });
+      }, 4000);
     } else {
-      setTransactionData({
-        Account_Name: "Account Not Found!",
-        Account_Number: "enter Account Number",
-        Amount: "Amount in USD",
-        Ref: "Payment for Service",
-      });
+      setTimeout(() => {
+        setTransactionMessage({
+          ...transactionMessage,
+          icon: "fa fa-times-circle-o",
+          message: "Account cannot be verified!",
+        });
+      }, 3000);
+      setTimeout(() => {
+        setPopupStyle({ ...popupStyle, display: "none" });
+      }, 4000);
     }
   };
   const iconStyle = { color: "white" };
@@ -90,7 +156,7 @@ function Payment() {
                 <div className="input-label">
                   <span>
                     <i
-                      class="fa fa-address-card"
+                      className="fa fa-address-card"
                       style={iconStyle}
                       aria-hidden="true"
                     ></i>
@@ -110,7 +176,7 @@ function Payment() {
                 <div className="input-label">
                   <span>
                     <i
-                      class="fa fa-user"
+                      className="fa fa-user"
                       style={iconStyle}
                       aria-hidden="true"
                     ></i>
@@ -122,7 +188,7 @@ function Payment() {
                   onChange={updateField}
                   placeholder={transactionData.Account_Name}
                   required={true}
-                  disabled
+                  disabled={true}
                 />
               </div>
             </div>
@@ -131,7 +197,7 @@ function Payment() {
                 <div className="input-label">
                   <span>
                     <i
-                      class="fa fa-money"
+                      className="fa fa-money"
                       style={iconStyle}
                       aria-hidden="true"
                     ></i>
@@ -151,7 +217,7 @@ function Payment() {
                 <div className="input-label">
                   <span>
                     <i
-                      class="fa fa-commenting"
+                      className="fa fa-commenting"
                       style={iconStyle}
                       aria-hidden="true"
                     ></i>
@@ -161,21 +227,21 @@ function Payment() {
                   type="text"
                   name="Ref"
                   onChange={updateField}
-                  placeholder={transactionData.Ref}
+                  placeholder="Optional"
                   required={false}
                 />
               </div>
             </div>
             <div className="box-space-childs">
               <div style={{ flexDirection: "column" }}>
-                <label for="label">
+                <label htmlFor="label">
                   <p>When would you like this to happen</p>
                 </label>{" "}
                 <div className="input-div">
                   <div className="input-label">
                     <span>
                       <i
-                        class="fa fa-calendar"
+                        className="fa fa-calendar"
                         style={iconStyle}
                         aria-hidden="true"
                       ></i>
@@ -184,7 +250,7 @@ function Payment() {
                   <input
                     type="text"
                     placeholder="Immediately"
-                    disabled="true"
+                    disabled={true}
                     style={{ width: "60vw", height: "7vh" }}
                   />
                 </div>
@@ -195,16 +261,24 @@ function Payment() {
               style={{ marginTop: "5vh", justifyContent: "space-around" }}
             >
               <div>
-                <button type="button" class="btn btn-primary" onClick={verify}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={verify}
+                >
                   verify
                 </button>
               </div>
               <div>
-                <button onClick={Submit} type="button" class="btn btn-success">
+                <button
+                  onClick={Submit}
+                  type="button"
+                  className="btn btn-success"
+                >
                   send
                 </button>
               </div>
-            </div>{" "}
+            </div>
           </form>
         </div>
       </div>
@@ -215,6 +289,24 @@ function Payment() {
           details to a third party.{" "}
         </p>
       </footer>
+
+      <div className="popup" style={popupStyle}>
+        <h3 style={{ margin: "35px", fontSize: "4.75rem" }}>
+          <i
+            className={transactionMessage.icon}
+            style={{ color: "green" }}
+            aria-hidden="true"
+          ></i>
+        </h3>
+        <p>{transactionMessage.message}</p>
+        {/* <button
+          type="button"
+          className="btn btn-primary"
+          style={{ left: "70px", position: "relative", top: "70px" }}
+        >
+          OK
+        </button> */}
+      </div>
     </div>
   );
 }

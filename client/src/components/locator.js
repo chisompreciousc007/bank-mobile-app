@@ -2,14 +2,14 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 function BankAddress(props) {
   return (
-    <tr key={props.index}>
-      <th class="bank-location-paragraphs" scope="row">
+    <tr>
+      <th className="bank-location-paragraphs" scope="row">
         {props.index + 1}
       </th>
       <td>
-        <p class="bank-location-paragraphs">{props.address}</p>
-        <p class="bank-location-paragraphs">{props.city}</p>
-        <p class="bank-location-paragraphs">{props.phone}</p>
+        <p className="bank-location-paragraphs">{props.address}</p>
+        <p className="bank-location-paragraphs">{props.city}</p>
+        <p className="bank-location-paragraphs">{props.phone}</p>
       </td>
     </tr>
   );
@@ -45,14 +45,14 @@ function Locator() {
 
   return (
     <div>
-      <div class="detail">
+      <div className="detail">
         <div id="top-bar">
           {" "}
           <p>Locate an ATM or office closest to you</p>
         </div>
 
         <div style={{ width: "100%", height: "68vh" }}>
-          <table class="table table-striped" style={{ color: "white" }}>
+          <table className="table table-striped" style={{ color: "white" }}>
             <thead>
               {/* <tr>
                 <th scope="col">#</th>
@@ -62,6 +62,7 @@ function Locator() {
             <tbody>
               {locations.map((location, index) => (
                 <BankAddress
+                  key={index}
                   index={index}
                   address={location.address}
                   city={location.city}

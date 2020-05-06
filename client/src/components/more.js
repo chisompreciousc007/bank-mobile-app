@@ -23,14 +23,14 @@ function More() {
   ];
   return (
     <div>
-      <div class="detail">
-        <div class="list-group">
+      <div className="detail">
+        <div className="list-group">
           {itemList.map((item, index) => (
             <button
               style={style}
               href="#"
               key={index}
-              class={"list-group-item list-group-item-action"}
+              className={"list-group-item list-group-item-action"}
             >
               <i className={item.icon} aria-hidden="true"></i> {item.item}
             </button>

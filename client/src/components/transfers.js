@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Transfer() {
-  // const url = "http://localhost:4000";
   const [transactionList, setTransactionList] = useState([]);
 
   const getTransactionList = async () => {
     const response = await fetch("/api/transactions");
-
     const data = await response.json();
-    console.log(data);
     setTransactionList([...transactionList, ...data]);
   };
   useEffect(() => {
@@ -63,7 +60,7 @@ function Transfer() {
               <div>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={() => console.log(transactionList[0].Account_Name)}
                 >
                   Statement of Account
