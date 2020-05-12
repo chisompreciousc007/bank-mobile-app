@@ -31,7 +31,7 @@ function Nav() {
             <h1>
               <i className="fa fa-exchange" aria-hidden="true"></i>
             </h1>
-            <p>TRANSFERS</p>
+            <p>TRANSACTIONS</p>
           </div>
         </Link>
       </div>

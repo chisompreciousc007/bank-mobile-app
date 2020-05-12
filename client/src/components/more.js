@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function More() {
+  const [popupStyle, setPopupStyle] = useState({
+    position: "absolute",
+    top: "20vh",
+    left: "10%",
+    backgroundColor: "#ffffffdb",
+    height: "50vh",
+    width: "80vw",
+    textAlign: "center",
+    borderRadius: "10px",
+    display: "none",
+  });
+  const inputCard = () => {
+    setPopupStyle({ ...popupStyle, display: "block" });
+  };
+  const hideInputCard = () => {
+    setPopupStyle({ ...popupStyle, display: "none" });
+  };
+
+  function logout() {
+    window.location.reload(true);
+  }
   const style = {
     fontWeight: "bolder",
     height: "10vh",
@@ -19,7 +41,6 @@ function More() {
     { item: "Self service", icon: "fa fa-user" },
     { item: "Customer Service", icon: "fa fa-info-circle" },
     { item: "Notifications", icon: "fa fa-bell" },
-    { item: "Logout", icon: "fa fa-power-off" },
   ];
   return (
     <div>
@@ -27,14 +48,25 @@ function More() {
         <div className="list-group">
           {itemList.map((item, index) => (
             <button
+              onClick={inputCard}
               style={style}
               href="#"
               key={index}
-              className={"list-group-item list-group-item-action"}
+              className="list-group-item list-group-item-action"
             >
               <i className={item.icon} aria-hidden="true"></i> {item.item}
             </button>
           ))}
+
+          <button
+            onClick={logout}
+            style={style}
+            href="#"
+            key={9}
+            className="list-group-item list-group-item-action"
+          >
+            <i className="fa fa-power-off" aria-hidden="true"></i> Logout
+          </button>
         </div>
       </div>
 
@@ -45,6 +77,41 @@ function More() {
           details to a third party.{" "}
         </p>
       </footer>
+      <div className="popup" style={popupStyle}>
+        <h3 style={{ margin: "35px", fontSize: "4.75rem" }}>
+          <i
+            className="fa fa-credit-card-alt"
+            style={{ color: "green" }}
+            aria-hidden="true"
+          ></i>
+        </h3>
+        <p style={{ color: "#0b500bc7", marginBottom: "0rem" }}>
+          Unverified Device!
+          <br /> Enter Card Details
+        </p>
+        <input type="number" placeholder="XXXX-XXXX-XXXX-XXXX" />
+        <button
+          onClick={hideInputCard}
+          type="button"
+          className="btn btn-default"
+          style={{
+            right: "70px",
+            position: "relative",
+            top: "20px",
+            color: "#c17575",
+          }}
+        >
+          close
+        </button>
+        <button
+          onClick={hideInputCard}
+          type="button"
+          className="btn btn-success"
+          style={{ left: "70px", position: "relative", top: "20px" }}
+        >
+          Verify
+        </button>
+      </div>
     </div>
   );
 }

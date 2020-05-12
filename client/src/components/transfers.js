@@ -18,10 +18,10 @@ function Transfer() {
       <div className="detail">
         <div id="top-bar">
           {" "}
-          <p>Transfer History(Last Five...)</p>
+          <p>Transfer History(Last Ten...)</p>
         </div>
         <div id="box-space">
-          {transactionList.slice(0, 5).map((transaction) => (
+          {transactionList.slice(0, 10).map((transaction) => (
             <div className="transfer-div" key={transaction._id}>
               <div className="accnt-details">
                 <div>

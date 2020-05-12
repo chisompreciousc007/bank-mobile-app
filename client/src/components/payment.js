@@ -16,7 +16,7 @@ function Payment() {
   }, []);
   const [transactionData, setTransactionData] = useState({
     Account_Name: "Click 'VERIFY' to confirm account",
-    Account_Number: "Enter Account Number",
+    Account_Number: "Account Number/IBAN",
     Amount: "Amount in USD",
     Ref: "Payment for Service",
   });
@@ -31,6 +31,7 @@ function Payment() {
     height: "50vh",
     width: "80vw",
     textAlign: "center",
+    borderRadius: "10px",
     display: "none",
   });
   const [transactionMessage, setTransactionMessage] = useState({
@@ -43,12 +44,12 @@ function Payment() {
     // if (error) return console.log(error.details[0].message);
     if (error) {
       const errmsg = error.details[0].message;
-      console.log(errmsg);
+      console.log(typeof errmsg);
 
       setTransactionMessage({
         ...transactionMessage,
         icon: "fa fa-times-circle-o",
-        message: "All inputs must be formatted correctly!",
+        message: `${errmsg} `,
       });
       setPopupStyle({ ...popupStyle, display: "block" });
       return setTimeout(() => {
@@ -157,6 +158,26 @@ function Payment() {
                 <div className="input-label">
                   <span>
                     <i
+                      className="fa fa-university"
+                      style={iconStyle}
+                      aria-hidden="true"
+                    ></i>
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  name="Routing_Number"
+                  maxLength="9"
+                  placeholder="Bank Routing Number"
+                  required={true}
+                />
+              </div>
+            </div>
+            <div className="box-space-childs">
+              <div className="input-div">
+                <div className="input-label">
+                  <span>
+                    <i
                       className="fa fa-address-card"
                       style={iconStyle}
                       aria-hidden="true"
@@ -169,6 +190,7 @@ function Payment() {
                   onChange={updateField}
                   placeholder={transactionData.Account_Number}
                   required={true}
+                  maxLength="34"
                 />
               </div>
             </div>
@@ -234,32 +256,32 @@ function Payment() {
               </div>
             </div>
             <div className="box-space-childs">
-              <div style={{ flexDirection: "column" }}>
-                <label htmlFor="label">
+              {/* <div style={{ flexDirection: "column" }}> */}
+              {/* <label htmlFor="label">
                   <p>When would you like this to happen</p>
-                </label>{" "}
-                <div className="input-div">
-                  <div className="input-label">
-                    <span>
-                      <i
-                        className="fa fa-calendar"
-                        style={iconStyle}
-                        aria-hidden="true"
-                      ></i>
-                    </span>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Immediately"
-                    disabled={true}
-                    style={{ width: "60vw", height: "7vh" }}
-                  />
+                </label>{" "} */}
+              <div className="input-div">
+                <div className="input-label">
+                  <span>
+                    <i
+                      className="fa fa-calendar"
+                      style={iconStyle}
+                      aria-hidden="true"
+                    ></i>
+                  </span>
                 </div>
+                <input
+                  type="text"
+                  placeholder="Immediately"
+                  disabled={true}
+                  // style={{ width: "60vw", height: "7vh" }}
+                />
               </div>
+              {/* </div> */}
             </div>
             <div
               className="box-space-childs"
-              style={{ marginTop: "5vh", justifyContent: "space-around" }}
+              style={{ justifyContent: "space-around" }}
             >
               <div>
                 <button
@@ -300,13 +322,6 @@ function Payment() {
           ></i>
         </h3>
         <p>{transactionMessage.message}</p>
-        {/* <button
-          type="button"
-          className="btn btn-primary"
-          style={{ left: "70px", position: "relative", top: "70px" }}
-        >
-          OK
-        </button> */}
       </div>
     </div>
   );

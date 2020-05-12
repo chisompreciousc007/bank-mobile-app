@@ -3,7 +3,7 @@ const Joi = require("@hapi/joi");
 const transactionValidation = (data) => {
   const schema = Joi.object({
     Account_Name: Joi.string().min(6).required(),
-    Account_Number: Joi.string().min(6).required(),
+    Account_Number: Joi.string().min(6).max(34).required(),
     Amount: Joi.number().min(1).required(),
     Ref: Joi.string(),
   });

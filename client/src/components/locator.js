@@ -17,29 +17,39 @@ function BankAddress(props) {
 function Locator() {
   const locations = [
     {
-      address: "3150milk",
-      city: "florida",
-      phone: "11111111",
+      address: "204 S. Woodland Boulevard",
+      city: "DeLand, FL 32720",
+      phone: "(386) 734-5930",
     },
     {
-      address: "380 eress",
-      city: "hawaii",
-      phone: "000000000",
+      address: "1500 N. Spring Garden Ave",
+      city: "DeLand, FL 32720",
+      phone: "(386) 734-0237",
     },
     {
-      address: "hgvkhgjhgk",
-      city: "jhvlgkhjbkl,",
-      phone: "58888885555",
+      address: "101 Northlake Drive",
+      city: "Orange City, FL 32763,",
+      phone: "(386) 960-1200",
     },
     {
-      address: "bv,mbvvjl,khgb",
-      city: "gv,khjvj,kbk",
-      phone: "444444444444444444",
+      address: "850 S. Volusia Avenue",
+      city: "Orange City, FL 32763",
+      phone: "(386) 774-2090",
     },
     {
-      address: "hvlkb.jkhn.lj",
-      city: "bv,hjvbhkjlbgjhb.ljkhjhbkh",
-      phone: "hvhglbknb.jlknl.",
+      address: "1812 Ridgewood Avenue",
+      city: "Holly Hill, FL 32117",
+      phone: "(386) 366-9205",
+    },
+    {
+      address: "1515 East Highway 50",
+      city: "Clermont, FL 34711",
+      phone: "(352) 404-0404",
+    },
+    {
+      address: "112 N Magnolia Avenue",
+      city: "Ocala, FL 34475",
+      phone: "352-355-4579",
     },
   ];
 
@@ -69,20 +79,23 @@ function Locator() {
                   phone={location.phone}
                 />
               ))}
-              {/* <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-              </tr> */}
             </tbody>
           </table>
+          <a
+            onClick={() =>
+              window.location.replace(
+                "https://www.bankonmainstreet.com/about/locator"
+              )
+            }
+            href="#"
+            target="_blank"
+            style={{
+              textDecoration: "none",
+              color: "#c3f3bffa",
+            }}
+          >
+            Get more Locations
+          </a>
         </div>
       </div>
 
