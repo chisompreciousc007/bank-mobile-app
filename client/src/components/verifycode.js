@@ -25,9 +25,9 @@ function VerifyCode() {
   };
   const verifystyle = {
     width: "82vw",
-    position: "relative",
-    top: "-95vh",
-    marginLeft: "5vw",
+    position: "absolute",
+    top: "35px",
+    marginLeft: "4vw",
   };
 
   return (
@@ -36,7 +36,7 @@ function VerifyCode() {
         <img
           alt=""
           src="background.png"
-          style={{ width: "92vw", height: "100vh", backgroundSize: "cover" }}
+          style={{ width: "92vw", height: "100%", backgroundSize: "cover" }}
         />
         <div style={verifystyle}>
           <img

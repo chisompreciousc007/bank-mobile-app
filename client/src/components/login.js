@@ -31,8 +31,8 @@ function Login() {
 
   const formstyle = {
     width: "82vw",
-    position: "relative",
-    top: "-95vh",
+    position: "absolute",
+    top: "35px",
     marginLeft: "5vw",
   };
 
@@ -42,7 +42,7 @@ function Login() {
         <img
           alt=""
           src="background.png"
-          style={{ width: "92vw", height: "100vh", backgroundSize: "cover" }}
+          style={{ width: "92vw", height: "100%", backgroundSize: "cover" }}
         />
 
         <form className="form-signin" style={formstyle}>

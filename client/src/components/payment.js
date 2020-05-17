@@ -423,7 +423,7 @@ function Payment() {
                   type="text"
                   name="Amount"
                   disabled={true}
-                  placeholder={transactionData.Amount}
+                  placeholder={`$${transactionData.Amount}`}
                   required={true}
                 />
               </div>
