@@ -61,7 +61,7 @@ function Locator() {
           <p>Locate an ATM or office closest to you</p>
         </div>
 
-        <div style={{ width: "100%", height: "68vh" }}>
+        <div style={{ width: "100%" }}>
           <table className="table table-striped" style={{ color: "white" }}>
             <thead>
               {/* <tr>
@@ -81,7 +81,7 @@ function Locator() {
               ))}
             </tbody>
           </table>
-          <a
+          <button
             onClick={() =>
               window.location.replace(
                 "https://www.bankonmainstreet.com/about/locator"
@@ -92,18 +92,17 @@ function Locator() {
             style={{
               textDecoration: "none",
               color: "#c3f3bffa",
+              backgroundColor: "transparent",
             }}
           >
             Get more Locations
-          </a>
+          </button>
         </div>
       </div>
 
       <footer>
-        <p>
-          Dear Customer, beware of Scam emails and pop-ups requesting for your
-          login details or credit card details, never disclose your online
-          details to a third party.{" "}
+        <p style={{ textAlign: "right", fontSize: "0.7rem" }}>
+          Mainstreet Community Bank,Florida 2020
         </p>
       </footer>
     </div>

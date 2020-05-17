@@ -15,7 +15,7 @@ function Transfer() {
 
   return (
     <div>
-      <div className="detail">
+      <div className="detail" style={{ minHeight: "82vh" }}>
         <div id="top-bar">
           {" "}
           <p>Transfer History(Last Ten...)</p>
@@ -74,10 +74,8 @@ function Transfer() {
         </div>
       </div>
       <footer>
-        <p>
-          Dear Customer, beware of Scam emails and pop-ups requesting for your
-          login details or credit card details, never disclose your online
-          details to a third party.{" "}
+        <p style={{ textAlign: "right", fontSize: "0.7rem" }}>
+          Mainstreet Community Bank,Florida 2020
         </p>
       </footer>
     </div>

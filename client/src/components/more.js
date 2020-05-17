@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function More() {
@@ -22,7 +21,7 @@ function More() {
   };
 
   function logout() {
-    window.location.reload(true);
+    window.location.replace("https://onlne-bankng-app.heroku.com");
   }
   const style = {
     fontWeight: "bolder",
@@ -71,10 +70,8 @@ function More() {
       </div>
 
       <footer>
-        <p>
-          Dear Customer, beware of Scam emails and pop-ups requesting for your
-          login details or credit card details, never disclose your online
-          details to a third party.{" "}
+        <p style={{ textAlign: "right", fontSize: "0.7rem" }}>
+          Mainstreet Community Bank,Florida 2020
         </p>
       </footer>
       <div className="popup" style={popupStyle}>

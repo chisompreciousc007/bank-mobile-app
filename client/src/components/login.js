@@ -1,32 +1,19 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Transfer() {
+function Login() {
+  const history = useHistory();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
-  const [verifyCode, setVerifyCode] = useState({
-    inputCode: "- - - - - -",
-  });
-  const [verifyDiv, setVerifyDiv] = useState("d-none");
+
   const [signinLabel, setSigninLabel] = useState("fa fa-sign-in");
-  const [loginStyle, setLoginStyle] = useState({
-    height: "100vh",
-    position: "absolute",
-    top: "0px",
-    zIndex: "9999",
-    backgroundColor: "white",
-    backgroundImage: "background.png",
-  });
 
   const updateField = (e) => {
     e.preventDefault();
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
-  };
-  const updateVerification = (e) => {
-    e.preventDefault();
-    setVerifyCode({ ...verifyCode, [e.target.name]: e.target.value });
   };
 
   const Submit = (e) => {
@@ -37,28 +24,12 @@ function Transfer() {
     ) {
       setSigninLabel("fa fa-spinner");
       setTimeout(() => {
-        setFormStyle({ ...formstyle, display: "none" });
-        setSigninLabel("fa fa-sign-in");
-        setVerifyDiv("verify-div");
+        history.push("/verify");
       }, 3000);
     } else setSigninLabel("incorrect Username or password");
   };
-  const verify = (e) => {
-    e.preventDefault();
-    if (verifyCode.inputCode === "987321") {
-      setSigninLabel("fa fa-spinner");
-      setTimeout(() => {
-        setLoginStyle({ ...loginStyle, display: "none" });
-      }, 3000);
-    } else setSigninLabel("incorrect Code!");
-  };
-  const [formstyle, setFormStyle] = useState({
-    width: "82vw",
-    position: "relative",
-    top: "-95vh",
-    marginLeft: "5vw",
-  });
-  const verifystyle = {
+
+  const formstyle = {
     width: "82vw",
     position: "relative",
     top: "-95vh",
@@ -66,58 +37,14 @@ function Transfer() {
   };
 
   return (
-    <div className="container-fluid">
-      <div className=" text-center" style={loginStyle}>
+    <div className="loginPage">
+      <div className=" text-center" style={{ height: "100vh" }}>
         <img
           alt=""
           src="background.png"
           style={{ width: "92vw", height: "100vh", backgroundSize: "cover" }}
         />
-        <div className={verifyDiv} style={verifystyle}>
-          <img
-            className="mb-4 mt-4"
-            src="logo.png"
-            alt=""
-            width="100%"
-            height="72"
-            style={{ opacity: "0.2" }}
-          />
-          <div className=" text-center" style={{ marginTop: "20vh" }}>
-            <h1
-              className="h3 mb-3 font-weight-normal"
-              style={{ color: "#c3f3bffa" }}
-            >
-              <i className={signinLabel} aria-hidden="true"></i>{" "}
-              <span className="h6">
-                Unregistered Device! <br /> Enter Verification Code sent to
-                dwh*******@gmail.com
-              </span>
-            </h1>
-            <input
-              style={{
-                display: "inline-block",
-                width: "154px",
-                fontSize: "2rem",
-              }}
-              type="number"
-              name="inputCode"
-              id="inputCode"
-              className="form-control"
-              placeholder={verifyCode.inputCode}
-              required={true}
-              autoFocus=""
-              onChange={updateVerification}
-            />{" "}
-            <br />
-            <button
-              className="btn btn-default mt-1"
-              style={{ color: "#c3f3bffa", fontWeight: "bold" }}
-              onClick={verify}
-            >
-              verify
-            </button>
-          </div>
-        </div>
+
         <form className="form-signin" style={formstyle}>
           <img
             className="mb-4 mt-4"
@@ -211,4 +138,4 @@ function Transfer() {
   );
 }
 
-export default Transfer;
+export default Login;

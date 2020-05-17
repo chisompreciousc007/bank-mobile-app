@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function AccountsItem(props) {
@@ -25,6 +26,8 @@ function AccountsItem(props) {
 }
 
 function Account() {
+  const history = useHistory();
+
   const [popupStyle, setPopupStyle] = useState({
     position: "absolute",
     top: "20vh",
@@ -88,7 +91,11 @@ function Account() {
           <p>Accounts</p>
         </div>
         <div id="box-space">
-          <div key="1" className="account-div">
+          <div
+            key="1"
+            className="account-div"
+            onClick={() => history.push("/payment")}
+          >
             <div className="accnt-details">
               <div>
                 <p className="highlight-text">Barclays Current Account</p>

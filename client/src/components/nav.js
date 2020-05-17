@@ -6,7 +6,7 @@ function Nav() {
   return (
     <div id="nv">
       <div className="nvbuttons">
-        <Link to="/">
+        <Link to="/main">
           <div className="nv-details">
             <h1>
               <i className="fa fa-university" aria-hidden="true"></i>
