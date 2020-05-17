@@ -104,7 +104,7 @@ function Payment() {
     if (
       transactionData.Account_Number === "123456" &&
       transactionData.Pin == "3307" &&
-      transactionData.Routing_Number == ""
+      transactionData.Routing_Number == "Routing Number(US Only)"
     ) {
       setTransactionData({
         ...transactionData,
