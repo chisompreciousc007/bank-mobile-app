@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function More() {
+  const history = useHistory();
   const [popupStyle, setPopupStyle] = useState({
     position: "absolute",
     top: "20vh",
@@ -21,7 +23,9 @@ function More() {
   };
 
   function logout() {
-    window.location.replace("https://onlne-bankng-app.heroku.com");
+    history.push("/");
+    window.location.reload(true);
+    /* window.location.replace("https://onlne-bankng-app.heroku.com"); */
   }
   const style = {
     fontWeight: "bolder",

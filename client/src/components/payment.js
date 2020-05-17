@@ -23,7 +23,7 @@ function Payment() {
     Pin: "XXXX",
   });
   const newBalance = {
-    Amount: oldBalance - parseFloat(transactionData.Amount),
+    Amount: oldBalance - parseFloat(transactionData.Amount) * 1.015,
   };
   const [popupStyle, setPopupStyle] = useState({
     position: "absolute",
