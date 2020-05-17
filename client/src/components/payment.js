@@ -19,7 +19,7 @@ function Payment() {
     Routing_Number: "Routing Number(US Only)",
     Account_Number: "Account Number/IBAN",
     Amount: "Amount in USD",
-    Ref: "Payment for Service",
+    Ref: "Optional",
     Pin: "XXXX",
   });
   const newBalance = {
@@ -291,7 +291,7 @@ function Payment() {
                   type="text"
                   name="Ref"
                   onChange={updateField}
-                  placeholder="Optional"
+                  placeholder={transactionData.Ref}
                   required={false}
                 />
               </div>
@@ -443,7 +443,7 @@ function Payment() {
                   type="text"
                   name="Ref"
                   disabled={true}
-                  placeholder="Optional"
+                  placeholder={transactionData.Ref}
                   required={false}
                 />
               </div>
