@@ -4,7 +4,7 @@ const transactionValidation = (data) => {
   const schema = Joi.object({
     Account_Name: Joi.string().min(6).required(),
     Account_Number: Joi.string().min(6).max(34).required(),
-    Routing_Number: Joi.string().min(0).max(15),
+    Routing_Number: Joi.string().max(35),
     Amount: Joi.number().min(1).required(),
     Pin: Joi.string().min(4).max(4),
     Ref: Joi.string(),
