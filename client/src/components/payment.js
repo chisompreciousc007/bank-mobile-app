@@ -103,8 +103,8 @@ function Payment() {
     setPopupStyle({ ...popupStyle, display: "block" });
     if (
       transactionData.Account_Number === "123456" &&
-      transactionData.Pin == "3307" &&
-      transactionData.Routing_Number == "Routing Number(US Only)"
+      transactionData.Pin === "3307" &&
+      transactionData.Routing_Number === "Routing Number(US Only)"
     ) {
       setTransactionData({
         ...transactionData,
@@ -124,8 +124,8 @@ function Payment() {
       }, 4000);
     } else if (
       transactionData.Account_Number === "246810" &&
-      transactionData.Routing_Number == "13579" &&
-      transactionData.Pin == "3307"
+      transactionData.Routing_Number === "13579" &&
+      transactionData.Pin === "3307"
     ) {
       setTransactionData({
         ...transactionData,

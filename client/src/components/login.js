@@ -38,7 +38,7 @@ function Login() {
 
   return (
     <div className="loginPage">
-      <div className=" text-center" style={{ height: "100vh" }}>
+      <div className=" text-center" style={{ height: "812px" }}>
         <img
           alt=""
           src="background.png"
