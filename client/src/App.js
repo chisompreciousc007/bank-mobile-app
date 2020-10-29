@@ -14,19 +14,6 @@ import Verify from "./components/verifycode";
 function App() {
   return (
     <Router>
-      {/* <div className="container-fluid">
-        <Nav />
-        <Switch>
-          <Route path="/" exact component={Account} />
-          <Route path="/payment" component={Payment} />
-          <Route path="/transfers" component={Transfers} />
-          <Route path="/locator" exact component={Locator} />
-          <Route path="/more" exact component={More} />
-          <Route path="/main" exact component={Main} />
-        </Switch>
-      </div>
-      <Login /> */}
-
       <div className="container">
         <Switch>
           <Route path="/" exact component={Login} />

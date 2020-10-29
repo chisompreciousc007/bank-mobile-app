@@ -1,27 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function VerifyCode() {
   const history = useHistory();
-  const [verifyCode, setVerifyCode] = useState({
-    inputCode: "- - - - - -",
-  });
+  const [verifyCode, setVerifyCode] = useState("- - - - - -");
   const [signinLabel, setSigninLabel] = useState("fa fa-sign-in");
+  const [signinNotice, setSigninNotice] = useState("Unregistered Device! ");
+  const [auth, setAuth] = useState(false);
 
-  const updateVerification = (e) => {
-    e.preventDefault();
-    setVerifyCode({ ...verifyCode, [e.target.name]: e.target.value });
+  useEffect(() => {
+    AuthStatus();
+  }, [verifyCode]);
+  const AuthStatus = () => {
+    if (verifyCode === "987321") {
+      setAuth(true);
+    }
   };
+
+  // const updateVerification = (e) => {
+  //   e.preventDefault();
+  //   setVerifyCode({ ...verifyCode, [e.target.name]: e.target.value });
+  // };
 
   const verify = (e) => {
     e.preventDefault();
-    if (verifyCode.inputCode === "987321") {
+    if (auth) {
       setSigninLabel("fa fa-spinner");
       setTimeout(() => {
         history.push("/main");
       }, 3000);
-    } else setSigninLabel("incorrect Code!");
+    } else setSigninNotice("incorrect Code!");
   };
   const verifystyle = {
     width: "82vw",
@@ -54,8 +63,8 @@ function VerifyCode() {
             >
               <i className={signinLabel} aria-hidden="true"></i>{" "}
               <span className="h6">
-                Unregistered Device! <br /> Enter Verification Code sent to
-                dwh*******@gmail.com
+                {signinNotice}
+                <br /> Enter Verification Code sent to dwh*******@gmail.com
               </span>
             </h1>
             <input
@@ -64,14 +73,15 @@ function VerifyCode() {
                 width: "154px",
                 fontSize: "2rem",
               }}
-              type="number"
+              maxLength="6"
+              type="tel"
               name="inputCode"
               id="inputCode"
               className="form-control"
-              placeholder={verifyCode.inputCode}
+              placeholder={verifyCode}
               required={true}
               autoFocus=""
-              onChange={updateVerification}
+              onChange={(e) => setVerifyCode(e.target.value)}
             />{" "}
             <br />
             <button

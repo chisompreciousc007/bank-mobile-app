@@ -1,32 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Login() {
   const history = useHistory();
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
-  });
 
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
   const [signinLabel, setSigninLabel] = useState("fa fa-sign-in");
+  const [signinNotice, setSigninNotice] = useState("Login");
+  const [auth, setAuth] = useState(false);
 
-  const updateField = (e) => {
-    e.preventDefault();
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  // useEffect(() => {
+  //   AuthStatus();
+  // }, [userEmail, userPassword]);
+
+  const verifyAuth = () => {
+    if (userEmail === "dwhitmore3107" && userPassword === "sunflower123") {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+    console.log(auth, userEmail, userPassword);
   };
-
   const Submit = (e) => {
     e.preventDefault();
-    if (
-      loginData.email === "dwhitmore3107" &&
-      loginData.password === "sunflower123"
-    ) {
+    verifyAuth();
+    if (auth) {
       setSigninLabel("fa fa-spinner");
       setTimeout(() => {
         history.push("/verify");
       }, 3000);
-    } else setSigninLabel("incorrect Username or password");
+    } else setSigninNotice("incorrect Username or password");
   };
 
   const formstyle = {
@@ -59,7 +64,7 @@ function Login() {
             style={{ color: "#c3f3bffa" }}
           >
             <i className={signinLabel} aria-hidden="true"></i>{" "}
-            <span className="h6">Login</span>
+            <span className="h6">{signinNotice}</span>
           </h1>
           <label htmlFor="inputEmail" className="sr-only">
             Email address
@@ -73,16 +78,21 @@ function Login() {
             placeholder="Username"
             required={true}
             autoFocus=""
-            onChange={updateField}
+            onChange={(e) => {
+              setUserEmail(e.target.value);
+            }}
+            onKeyUp={verifyAuth}
           />
           <label htmlFor="inputPassword" className="sr-only">
             Password
           </label>
           <input
             style={{ marginBottom: "3vh" }}
-            onChange={updateField}
+            onChange={(e) => {
+              setUserPassword(e.target.value);
+            }}
+            onKeyUp={verifyAuth}
             type="password"
-            name="password"
             id="inputPassword"
             className="form-control"
             placeholder="Password"

@@ -37,13 +37,15 @@ function Account() {
     width: "80vw",
     textAlign: "center",
     borderRadius: "10px",
+  });
+  const [popupDisplay, setPopupDisplay] = useState({
     display: "none",
   });
   const inputCard = () => {
-    setPopupStyle({ ...popupStyle, display: "block" });
+    setPopupDisplay({ display: "block" });
   };
   const hideInputCard = () => {
-    setPopupStyle({ ...popupStyle, display: "none" });
+    setPopupDisplay({ display: "none" });
   };
   const accountList = [
     {
@@ -130,7 +132,7 @@ function Account() {
           Transfer between Accounts
         </button>
       </div>
-      <div className="popup" style={popupStyle}>
+      <div className="popup" style={popupStyle} style={popupDisplay}>
         <h3 style={{ margin: "35px", fontSize: "4.75rem" }}>
           <i
             className="fa fa-credit-card-alt"
