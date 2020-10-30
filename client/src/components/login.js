@@ -1,37 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import axios from "axios";
+import { UserContext } from "./UserContext";
+import Spinner from "./spinner";
 function Login() {
   const history = useHistory();
-
+  const { user, setUser } = useContext(UserContext);
   const [userEmail, setUserEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [userPassword, setUserPassword] = useState("");
   const [signinLabel, setSigninLabel] = useState("fa fa-sign-in");
   const [signinNotice, setSigninNotice] = useState("Login");
-  const [auth, setAuth] = useState(false);
 
-  // useEffect(() => {
-  //   AuthStatus();
-  // }, [userEmail, userPassword]);
-
-  const verifyAuth = () => {
-    if (userEmail === "dwhitmore3107" && userPassword === "sunflower123") {
-      setAuth(true);
-    } else {
-      setAuth(false);
+  const Submit = async (e) => {
+    try {
+      e.preventDefault();
+      setLoading(true);
+      console.log({
+        email: userEmail,
+        password: userPassword,
+      });
+      const res = await axios.post(`/api/users/login`, {
+        email: userEmail,
+        password: userPassword,
+      });
+      console.log(res.data);
+      setUser((prevState) => ({
+        ...prevState,
+        ...res.data,
+      }));
+      history.push("/verify");
+    } catch (error) {
+      setSigninNotice("incorrect Username or password");
     }
-    console.log(auth, userEmail, userPassword);
-  };
-  const Submit = (e) => {
-    e.preventDefault();
-    verifyAuth();
-    if (auth) {
-      setSigninLabel("fa fa-spinner");
-      setTimeout(() => {
-        history.push("/verify");
-      }, 3000);
-    } else setSigninNotice("incorrect Username or password");
   };
 
   const formstyle = {
@@ -43,6 +45,7 @@ function Login() {
 
   return (
     <div className="loginPage">
+      {loading ? <Spinner /> : null}
       <div className=" text-center" style={{ height: "812px" }}>
         <img
           alt=""
@@ -81,7 +84,6 @@ function Login() {
             onChange={(e) => {
               setUserEmail(e.target.value);
             }}
-            onKeyUp={verifyAuth}
           />
           <label htmlFor="inputPassword" className="sr-only">
             Password
@@ -91,7 +93,6 @@ function Login() {
             onChange={(e) => {
               setUserPassword(e.target.value);
             }}
-            onKeyUp={verifyAuth}
             type="password"
             id="inputPassword"
             className="form-control"
@@ -131,7 +132,7 @@ function Login() {
                 }}
               >
                 Sign Up
-              </a>{" "}
+              </a>
             </p>
           </div>
           <button

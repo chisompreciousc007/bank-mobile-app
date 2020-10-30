@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { UserContext } from "./UserContext";
+import Nav from "./nav";
 
 function Transfer() {
-  const [transactionList, setTransactionList] = useState([]);
-
-  const getTransactionList = async () => {
-    const response = await fetch("/api/transactions");
-    const data = await response.json();
-    setTransactionList([...transactionList, ...data]);
-  };
-  useEffect(() => {
-    getTransactionList();
-  }, []);
+  const { user, setUser } = useContext(UserContext);
+  const transactionList = user.transactions.reverse();
 
   return (
     <div>
+      <Nav />
       <div className="detail" style={{ minHeight: "82vh" }}>
         <div id="top-bar">
           {" "}
@@ -25,9 +20,7 @@ function Transfer() {
             <div className="transfer-div" key={transaction._id}>
               <div className="accnt-details">
                 <div>
-                  <p className="transfer-highlight-debit">
-                    {transactionList[0].Account_Name}
-                  </p>
+                  <p className="transfer-highlight-debit">{transaction.name}</p>
                 </div>
                 <div>
                   <p> {`Ref ID:${transaction._id}`} </p>
@@ -37,11 +30,11 @@ function Transfer() {
                 <div>
                   <p className="transfer-highlight-debit">
                     {" "}
-                    {`-${transaction.Amount}`}{" "}
+                    {`-${transaction.amount}`}{" "}
                   </p>
                 </div>
                 <div>
-                  <p> {transaction.Date} </p>
+                  <p> {transaction.date} </p>
                 </div>
               </div>
             </div>

@@ -1,36 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { UserContext } from "./UserContext";
+import Spinner from "./spinner";
 
 function VerifyCode() {
   const history = useHistory();
+  const { user, setUser } = useContext(UserContext);
   const [verifyCode, setVerifyCode] = useState("- - - - - -");
   const [signinLabel, setSigninLabel] = useState("fa fa-sign-in");
   const [signinNotice, setSigninNotice] = useState("Unregistered Device! ");
-  const [auth, setAuth] = useState(false);
-
-  useEffect(() => {
-    AuthStatus();
-  }, [verifyCode]);
-  const AuthStatus = () => {
-    if (verifyCode === "987321") {
-      setAuth(true);
-    }
-  };
-
-  // const updateVerification = (e) => {
-  //   e.preventDefault();
-  //   setVerifyCode({ ...verifyCode, [e.target.name]: e.target.value });
-  // };
+  const [loading, setLoading] = useState(false);
 
   const verify = (e) => {
     e.preventDefault();
-    if (auth) {
-      setSigninLabel("fa fa-spinner");
+    setLoading(true);
+    if (verifyCode === user.verifyCode) {
+      // setSigninLabel("fa fa-spinner");
       setTimeout(() => {
-        history.push("/main");
+        history.replace("/account");
       }, 3000);
-    } else setSigninNotice("incorrect Code!");
+    } else {
+      setTimeout(() => {
+        setLoading(false);
+        setSigninNotice("incorrect Code!");
+      }, 3000);
+    }
   };
   const verifystyle = {
     width: "82vw",
@@ -41,6 +36,7 @@ function VerifyCode() {
 
   return (
     <div className="verifyPage">
+      {loading ? <Spinner /> : null}
       <div className=" text-center" style={{ height: "812px" }}>
         <img
           alt=""

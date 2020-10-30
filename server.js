@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-
+const cors = require("cors");
 require("dotenv/config");
 const path = require("path");
-const balanceRouter = require("./routes/balance");
-const transactionRouter = require("./routes/transaction");
+const userRouter = require("./routes/user");
+// const balanceRouter = require("./routes/balance");
+// const transactionRouter = require("./routes/transaction");
 const port = process.env.PORT || 4000;
 
 mongoose.connect(process.env.MONGODB_URI || process.env.DB_CONNECTION, {
@@ -22,9 +23,16 @@ try {
 } catch (error) {
   console.log("errrorrrr");
 }
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
 app.use(express.json());
-app.use("/api/transactions", transactionRouter);
-app.use("/api/balance", balanceRouter);
+// app.use("/api/transactions", transactionRouter);
+// app.use("/api/balance", balanceRouter);
+app.use("/api/users", userRouter);
 
 if ((process.env.NODE_ENV || "").trim() === "production") {
   app.use(express.static("client/build"));

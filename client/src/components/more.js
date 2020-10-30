@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Nav from "./nav";
 
 function More() {
   const history = useHistory();
@@ -24,7 +25,7 @@ function More() {
 
   function logout() {
     history.push("/");
-    window.location.reload(true);
+    window.location.reload();
     /* window.location.replace("https://onlne-bankng-app.heroku.com"); */
   }
   const style = {
@@ -47,6 +48,7 @@ function More() {
   ];
   return (
     <div>
+      <Nav />
       <div className="detail">
         <div className="list-group">
           {itemList.map((item, index) => (

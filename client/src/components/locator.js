@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Nav from "./nav";
 function BankAddress(props) {
   return (
     <tr>
@@ -55,6 +56,7 @@ function Locator() {
 
   return (
     <div>
+      <Nav />
       <div className="detail">
         <div id="top-bar">
           {" "}
