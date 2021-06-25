@@ -74,7 +74,7 @@ function Login() {
             name="email"
             id="inputEmail"
             className="form-control"
-            placeholder="Username(dwhit)"
+            placeholder="Username(johndoe@gmail.com)"
             required={true}
             autoFocus=""
             onChange={(e) => {
