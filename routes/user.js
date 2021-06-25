@@ -18,9 +18,9 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const lowercaseEmail = email.toLowerCase();
+
     // check if user is registered
     const user = await Banker.findOne({ email: lowercaseEmail });
-
     if (!user) return res.status(400).send("Incorrect Username or password");
     // hash password
     if (password !== user.password)

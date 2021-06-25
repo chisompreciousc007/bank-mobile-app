@@ -76,7 +76,7 @@ function Account() {
             >
               <div className="accnt-details">
                 <div>
-                  <p className="highlight-text">Barclays Current Account</p>
+                  <p className="highlight-text">MainStreet Account</p>
                 </div>
                 <div>
                   <p>Current Account</p>

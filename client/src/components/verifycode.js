@@ -60,7 +60,8 @@ function VerifyCode() {
               <i className={signinLabel} aria-hidden="true"></i>{" "}
               <span className="h6">
                 {signinNotice}
-                <br /> Enter Verification Code sent to dwh*******@gmail.com
+                <br /> Enter Verification Code sent to
+                dwh*******@gmail.com(123456)
               </span>
             </h1>
             <input

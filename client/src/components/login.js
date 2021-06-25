@@ -17,15 +17,10 @@ function Login() {
     try {
       e.preventDefault();
       setLoading(true);
-      console.log({
-        email: userEmail,
-        password: userPassword,
-      });
       const res = await axios.post(`/api/users/login`, {
         email: userEmail,
         password: userPassword,
       });
-      console.log(res.data);
       setUser((prevState) => ({
         ...prevState,
         ...res.data,
@@ -54,14 +49,15 @@ function Login() {
         />
 
         <form className="form-signin" style={formstyle}>
-          <img
+          <h3>Dummy Bank App</h3>
+          {/* <img
             className="mb-4 mt-4"
             src="logo.png"
             alt=""
             width="100%"
             height="72"
             style={{ opacity: "0.2" }}
-          />
+          /> */}
           <h1
             className="h3 mb-3 font-weight-normal"
             style={{ color: "#c3f3bffa" }}
@@ -78,7 +74,7 @@ function Login() {
             name="email"
             id="inputEmail"
             className="form-control"
-            placeholder="Username"
+            placeholder="Username(dwhit)"
             required={true}
             autoFocus=""
             onChange={(e) => {
@@ -96,7 +92,7 @@ function Login() {
             type="password"
             id="inputPassword"
             className="form-control"
-            placeholder="Password"
+            placeholder="Password(sunflower)"
             required={true}
           />
           <div className="checkbox mb-3" style={{ height: "8vh" }}>

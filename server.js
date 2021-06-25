@@ -5,8 +5,7 @@ const cors = require("cors");
 require("dotenv/config");
 const path = require("path");
 const userRouter = require("./routes/user");
-// const balanceRouter = require("./routes/balance");
-// const transactionRouter = require("./routes/transaction");
+//
 const port = process.env.PORT || 4000;
 
 mongoose.connect(process.env.MONGODB_URI || process.env.DB_CONNECTION, {
@@ -33,7 +32,7 @@ app.use(express.json());
 // app.use("/api/transactions", transactionRouter);
 // app.use("/api/balance", balanceRouter);
 app.use("/api/users", userRouter);
-
+app.use(express.static("client/build"));
 if ((process.env.NODE_ENV || "").trim() === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
